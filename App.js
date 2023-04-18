@@ -4,36 +4,35 @@ import { Alert, StyleSheet, Text, TextInput, TouchableHighlight, View } from 're
 export default function App() {
   const [usuario, setUsuario] = useState('');
   const [password, setPassword] = useState('');
+  
+  const Login = () => {
+    if(usuario === 'Yuriana' && password === '12345')
+      Alert.alert('Has iniciado sesión correctamente.');
+    else
+      Alert.alert('Datos de usuario inválidos');
+  };
 
   return (    
     <View style={styles.container}>
-      <Text style = {styles.title}> Login </Text>
+      <Text style = {styles.title}> Inicia Sesión </Text>
       <TextInput
-        style = {styles.boxes}
+        style = {styles.input}
         placeholder = 'Usuario'
         value = {usuario}
         onChangeText = {setUsuario}
       />
       <TextInput
-        style = {styles.boxes}
+        style = {styles.input}
         placeholder = 'Contraseña'
         secureTextEntry = {true}
         value = {password}
         onChangeText = {setPassword}
       />
-      <TouchableHighlight onPress={<Login></Login>}>
-        <Text style = {styles.log}> Entrar </Text>
+      <TouchableHighlight style = {styles.boton} onPress={Login}>
+        <Text style = {styles.entrar}> Entrar </Text>
       </TouchableHighlight>
     </View>
   );
-}
-
-function Login() {
-    if(usuario === "yuriana" && password === "12345"){
-      Alert.alert("Ha ingresado con éxito");
-    }
-    else
-      Alert.alert("Acceso incorrecto");
 }
 
 const styles = StyleSheet.create({
@@ -48,18 +47,32 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 34,
     fontWeight: 'bold',
-    marginBottom: 100,
-    color: 'pink',
+    marginBottom: 80,
+    color: '#F68DCB',
   },
 
-  boxes: {
-    fontSize: 20,
-    fontWeight: 'normal',
+  input: {
+    fontSize: 15,
+    width: '80%',
+    padding: 10,
+    marginBottom: 20,
+    color: '#4B3C48',
+    borderWith: 1,
+    borderRadius: 5,
+    backgroundColor: '#FAEBF4',
   },
 
-  log: {
+  boton: {
+    backgroundColor: '#F68DCB',
+    width: '30%',
+    padding: 10,
+    borderRadius: 5,
+  },
+
+  entrar: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'pink',
-  }
+    color: 'white',
+    textAlign: 'center',
+  },
 });
