@@ -4,12 +4,26 @@ import { Alert, StyleSheet, Text, TextInput, TouchableHighlight, View } from 're
 export default function App() {
   const [usuario, setUsuario] = useState('');
   const [password, setPassword] = useState('');
+  const [login, setLogin] = useState(false);
+  const [tareas, setTareas] = useState([]);
+  const [nuevatarea, setNuevaTarea] = useState('');
   
   const Login = () => {
-    if(usuario === 'Yuriana' && password === '12345')
+    if(usuario === 'Yuriana' && password === '12345') {
       Alert.alert('Has iniciado sesión correctamente.');
-    else
+      setLogin(true);
+    }
+    else {
       Alert.alert('Datos de usuario inválidos');
+    }
+  };
+
+  const Logout = () => {
+    setLogin(false);
+    setUsuario('');
+    setPassword('');
+    setTareas([]);
+    setNuevaTarea('');
   };
 
   return (    
