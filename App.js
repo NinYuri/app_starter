@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
-import { Button } from 'react-native-web';
+import { Button, FlatList } from 'react-native-web';
 
 export default function App() {
   const [usuario, setUsuario] = useState('');
@@ -27,27 +27,47 @@ export default function App() {
     setNuevaTarea('');
   };
 
-  return (    
+  const Tarea = () => {
+    if(nuevatarea.trim() !== '') {
+      setTareas([...tareas, {id: Date.now().toString(), text: nuevatarea}]);
+      setNuevaTarea('');
+    }
+  };
+
+  const Eliminar = (id) => {
+    setTareas(tareas.filter((tareas) => tareas.id !== id));
+  };
+
+    if(!login) {
+    return (    
+      <View style={styles.container}>
+        <Text style = {styles.title}> Inicia Sesión </Text>
+        <TextInput
+          style = {styles.input}
+          placeholder = 'Usuario'
+          value = {usuario}
+          onChangeText = {setUsuario}
+        />
+        <TextInput
+          style = {styles.input}
+          placeholder = 'Contraseña'
+          secureTextEntry = {true}
+          value = {password}
+          onChangeText = {setPassword}
+        />
+        <TouchableHighlight style = {styles.boton} onPress={Login}>
+          <Text style = {styles.entrar}> Entrar </Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+
+  return (
     <View style={styles.container}>
-      <Text style = {styles.title}> Inicia Sesión </Text>
-      <TextInput
-        style = {styles.input}
-        placeholder = 'Usuario'
-        value = {usuario}
-        onChangeText = {setUsuario}
-      />
-      <TextInput
-        style = {styles.input}
-        placeholder = 'Contraseña'
-        secureTextEntry = {true}
-        value = {password}
-        onChangeText = {setPassword}
-      />
-      <TouchableHighlight style = {styles.boton} onPress={Login}>
-        <Text style = {styles.entrar}> Entrar </Text>
-      </TouchableHighlight>
+        <Text style = {styles.todolist}> To-Do List </Text>
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({
@@ -64,6 +84,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 80,
     color: '#F68DCB',
+  },
+
+  todolist: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 680,
+    color: '#F68DCB'
   },
 
   input: {
