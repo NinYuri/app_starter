@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import { Button } from 'react-native-web';
 
 export default function App() {
   const [usuario, setUsuario] = useState('');
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 20,
     color: '#4B3C48',
-    borderWith: 1,
+    borderColor: 'pink',
     borderRadius: 5,
     backgroundColor: '#FAEBF4',
   },
